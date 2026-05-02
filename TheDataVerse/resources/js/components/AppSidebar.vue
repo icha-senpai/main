@@ -42,7 +42,7 @@ const mainNavItems: NavItem[] = [
         icon: Archive,
     },
     {
-        title: 'World',
+        title: 'Atlas',
         href: '/world',
         icon: Globe2,
     },
@@ -68,7 +68,11 @@ const footerNavItems: NavItem[] = [
 </script>
 
 <template>
-    <Sidebar collapsible="icon" variant="inset">
+    <Sidebar
+        collapsible="icon"
+        variant="inset"
+        class="border-r border-dv-cyan/10"
+    >
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>

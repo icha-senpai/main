@@ -23,7 +23,7 @@ const sections = [
         status: 'Planned',
     },
     {
-        title: 'World',
+        title: 'Atlas',
         description: 'A public-facing slice of the world bible, mythology, and setting logic.',
         status: 'Planned',
     },

@@ -30,10 +30,10 @@ const isExternalHref = (href: NavItem['href']) => {
         :class="`group-data-[collapsible=icon]:p-0 ${$props.class || ''}`"
     >
         <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu class="space-y-1">
                 <SidebarMenuItem v-for="item in items" :key="item.title">
                     <SidebarMenuButton
-                        class="text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                        class="h-8 rounded-xl px-3 text-[0.8rem] font-medium text-sidebar-foreground/48 transition-all duration-200 hover:bg-dv-violet/10 hover:text-dv-sky [&>svg]:size-4 [&>svg]:text-sidebar-foreground/35 hover:[&>svg]:text-dv-sky"
                         as-child
                     >
                         <a
