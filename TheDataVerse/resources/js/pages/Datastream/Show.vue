@@ -7,7 +7,7 @@ type DatastreamPost = {
     title: string;
     slug: string;
     excerpt: string | null;
-    body: string;
+    body_html: string;
     status: string;
     published_at: string | null;
     author: {
@@ -65,11 +65,7 @@ const publishedLabel = computed(() => {
                     {{ post.excerpt }}
                 </p>
 
-                <div
-                    class="mt-10 whitespace-pre-line text-base leading-8 text-foreground/85"
-                >
-                    {{ post.body }}
-                </div>
+                <div class="dv-prose mt-10" v-html="post.body_html"></div>
             </article>
         </main>
     </div>

@@ -47,13 +47,16 @@ class ManageDatastreamController extends Controller
 
         $status = $input['status'];
         $slugSource = $input['slug'] ?: $input['title'];
+        $bodyHtml = $input['body_html'];
 
         DatastreamPost::create([
             'user_id' => auth()->id(),
             'title' => $input['title'],
             'slug' => $this->uniqueSlug($slugSource),
             'excerpt' => $input['excerpt'] ?? null,
-            'body' => $input['body'],
+            'body' => $this->plainTextBody($bodyHtml),
+            'body_html' => $bodyHtml,
+            'body_json' => $input['body_json'] ?? null,
             'status' => $status,
             'published_at' => $status === 'published' ? now() : null,
         ]);
@@ -71,7 +74,8 @@ class ManageDatastreamController extends Controller
                 'title' => $datastreamPost->title,
                 'slug' => $datastreamPost->slug,
                 'excerpt' => $datastreamPost->excerpt,
-                'body' => $datastreamPost->body,
+                'body_html' => $datastreamPost->body_html ?: nl2br(e($datastreamPost->body)),
+                'body_json' => $datastreamPost->body_json,
                 'status' => $datastreamPost->status,
             ],
         ]);
@@ -85,12 +89,15 @@ class ManageDatastreamController extends Controller
 
         $status = $input['status'];
         $slugSource = $input['slug'] ?: $input['title'];
+        $bodyHtml = $input['body_html'];
 
         $datastreamPost->update([
             'title' => $input['title'],
             'slug' => $this->uniqueSlug($slugSource, $datastreamPost->id),
             'excerpt' => $input['excerpt'] ?? null,
-            'body' => $input['body'],
+            'body' => $this->plainTextBody($bodyHtml),
+            'body_html' => $bodyHtml,
+            'body_json' => $input['body_json'] ?? null,
             'status' => $status,
             'published_at' => $status === 'published'
                 ? ($datastreamPost->published_at ?? now())
@@ -136,5 +143,15 @@ class ManageDatastreamController extends Controller
         }
 
         return $slug;
+    }
+
+    private function plainTextBody(string $html): string
+    {
+        $plainText = Str::of(strip_tags($html))
+            ->replace('&nbsp;', ' ')
+            ->squish()
+            ->toString();
+
+        return $plainText !== '' ? $plainText : 'Empty signal body.';
     }
 }

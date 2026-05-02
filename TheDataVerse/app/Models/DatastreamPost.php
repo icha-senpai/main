@@ -17,6 +17,8 @@ class DatastreamPost extends Model
         'slug',
         'excerpt',
         'body',
+        'body_html',
+        'body_json',
         'status',
         'published_at',
     ];
@@ -24,6 +26,7 @@ class DatastreamPost extends Model
     protected function casts(): array
     {
         return [
+            'body_json' => 'array',
             'published_at' => 'datetime',
         ];
     }

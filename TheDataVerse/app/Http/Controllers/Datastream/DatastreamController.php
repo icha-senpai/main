@@ -40,7 +40,7 @@ class DatastreamController extends Controller
                 'title' => $datastreamPost->title,
                 'slug' => $datastreamPost->slug,
                 'excerpt' => $datastreamPost->excerpt,
-                'body' => $datastreamPost->body,
+                'body_html' => $datastreamPost->body_html ?: nl2br(e($datastreamPost->body)),
                 'status' => $datastreamPost->status,
                 'published_at' => $datastreamPost->published_at?->toISOString(),
                 'author' => [

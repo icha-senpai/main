@@ -4,6 +4,8 @@
 
 @import 'tw-animate-css';
 
+@source '../js/**/*.vue';
+@source '../views/**/*.blade.php';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
@@ -62,7 +64,6 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
 
-    /* DataVerse logo palette utilities */
     --color-dv-void: var(--dv-void);
     --color-dv-surface: var(--dv-surface);
     --color-dv-surface-soft: var(--dv-surface-soft);
@@ -129,6 +130,286 @@
             0 0 24px color-mix(in srgb, var(--dv-violet) 24%, transparent),
             inset 0 0 24px color-mix(in srgb, var(--dv-cyan) 8%, transparent);
         backdrop-filter: blur(14px);
+    }
+
+    /*
+      Public rich content typography.
+      Use this for rendered article/content HTML.
+    */
+    .dv-prose {
+        color: color-mix(in srgb, var(--foreground) 86%, transparent);
+        font-size: 1rem;
+        line-height: 1.85;
+    }
+
+    .dv-prose > * + * {
+        margin-top: 1.15em;
+    }
+
+    .dv-prose h1,
+    .dv-prose h2,
+    .dv-prose h3,
+    .dv-prose h4 {
+        color: var(--dv-ice);
+        font-weight: 900;
+        letter-spacing: -0.035em;
+        line-height: 1.12;
+    }
+
+    .dv-prose h1 {
+        font-size: clamp(2.25rem, 5vw, 4.5rem);
+    }
+
+    .dv-prose h2 {
+        margin-top: 1.6em;
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+    }
+
+    .dv-prose h3 {
+        margin-top: 1.4em;
+        font-size: clamp(1.35rem, 2vw, 1.8rem);
+    }
+
+    .dv-prose p {
+        color: color-mix(in srgb, var(--foreground) 84%, transparent);
+    }
+
+    .dv-prose strong {
+        color: var(--dv-ice);
+        font-weight: 800;
+    }
+
+    .dv-prose em {
+        color: var(--dv-sky);
+    }
+
+    .dv-prose a {
+        color: var(--dv-cyan);
+        font-weight: 700;
+        text-decoration: underline;
+        text-decoration-color: color-mix(
+            in srgb,
+            var(--dv-cyan) 45%,
+            transparent
+        );
+        text-underline-offset: 0.25em;
+        transition:
+            color 180ms ease,
+            text-decoration-color 180ms ease;
+    }
+
+    .dv-prose a:hover {
+        color: var(--dv-magenta);
+        text-decoration-color: color-mix(
+            in srgb,
+            var(--dv-magenta) 65%,
+            transparent
+        );
+    }
+
+    .dv-prose ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+    }
+
+    .dv-prose ol {
+        list-style: decimal;
+        padding-left: 1.5rem;
+    }
+
+    .dv-prose li {
+        margin-top: 0.35rem;
+        padding-left: 0.25rem;
+    }
+
+    .dv-prose blockquote {
+        margin-left: 0;
+        border-left: 3px solid
+            color-mix(in srgb, var(--dv-magenta) 75%, transparent);
+        border-radius: 0.35rem;
+        background: color-mix(in srgb, var(--dv-magenta) 8%, transparent);
+        padding: 0.75rem 1rem;
+        color: var(--dv-sky);
+        font-style: italic;
+    }
+
+    .dv-prose code {
+        border: 1px solid color-mix(in srgb, var(--dv-cyan) 25%, transparent);
+        border-radius: 0.45rem;
+        background: color-mix(in srgb, var(--dv-void) 72%, var(--dv-cyan));
+        padding: 0.15rem 0.35rem;
+        color: var(--dv-cyan);
+        font-size: 0.9em;
+    }
+
+    .dv-prose pre {
+        overflow-x: auto;
+        border: 1px solid color-mix(in srgb, var(--dv-cyan) 25%, transparent);
+        border-radius: 1rem;
+        background: color-mix(in srgb, var(--dv-void) 88%, var(--dv-violet));
+        padding: 1rem;
+    }
+
+    .dv-prose pre code {
+        border: 0;
+        background: transparent;
+        padding: 0;
+    }
+
+    /*
+      Tiptap editor surface.
+      Tiptap places this class directly on the ProseMirror editable element.
+    */
+    .dv-editor-content {
+        min-height: 22rem;
+        padding: 1.25rem;
+        color: color-mix(in srgb, var(--foreground) 88%, transparent);
+        outline: none;
+    }
+
+    .dv-editor-content:focus {
+        outline: none;
+    }
+
+    .dv-editor-content.ProseMirror {
+        min-height: 22rem;
+        outline: none;
+    }
+
+    .dv-editor-content > * + * {
+        margin-top: 1em;
+    }
+
+    .dv-editor-content p {
+        line-height: 1.8;
+    }
+
+    .dv-editor-content h2,
+    .dv-editor-content h3 {
+        color: var(--dv-ice);
+        font-weight: 900;
+        letter-spacing: -0.035em;
+        line-height: 1.15;
+    }
+
+    .dv-editor-content h2 {
+        font-size: 2rem;
+    }
+
+    .dv-editor-content h3 {
+        font-size: 1.5rem;
+    }
+
+    .dv-editor-content ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+    }
+
+    .dv-editor-content ol {
+        list-style: decimal;
+        padding-left: 1.5rem;
+    }
+
+    .dv-editor-content li {
+        margin-top: 0.35rem;
+        padding-left: 0.25rem;
+    }
+
+    .dv-editor-content blockquote {
+        margin-left: 0;
+        border-left: 3px solid
+            color-mix(in srgb, var(--dv-magenta) 75%, transparent);
+        border-radius: 0.35rem;
+        background: color-mix(in srgb, var(--dv-magenta) 8%, transparent);
+        padding: 0.75rem 1rem;
+        color: var(--dv-sky);
+        font-style: italic;
+    }
+
+    .dv-editor-content code {
+        border: 1px solid color-mix(in srgb, var(--dv-cyan) 25%, transparent);
+        border-radius: 0.45rem;
+        background: color-mix(in srgb, var(--dv-void) 72%, var(--dv-cyan));
+        padding: 0.15rem 0.35rem;
+        color: var(--dv-cyan);
+        font-size: 0.9em;
+    }
+
+    .dv-editor-content table,
+    .dv-prose table {
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border: 1px solid color-mix(in srgb, var(--dv-cyan) 32%, transparent);
+        border-radius: 0.85rem;
+        background: color-mix(in srgb, var(--dv-void) 86%, var(--dv-cyan));
+    }
+
+    .dv-editor-content th,
+    .dv-editor-content td,
+    .dv-prose th,
+    .dv-prose td {
+        position: relative;
+        border-right: 1px solid
+            color-mix(in srgb, var(--dv-cyan) 24%, transparent);
+        border-bottom: 1px solid
+            color-mix(in srgb, var(--dv-cyan) 24%, transparent);
+        background: color-mix(in srgb, var(--dv-surface) 84%, var(--dv-cyan));
+        padding: 0.7rem;
+        vertical-align: top;
+        color: color-mix(in srgb, var(--foreground) 88%, transparent);
+    }
+
+    .dv-editor-content th,
+    .dv-prose th {
+        background: color-mix(in srgb, var(--dv-cyan) 16%, var(--dv-void));
+        color: var(--dv-cyan);
+        font-weight: 900;
+    }
+
+    .dv-editor-content tr:last-child td,
+    .dv-prose tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .dv-editor-content th:last-child,
+    .dv-editor-content td:last-child,
+    .dv-prose th:last-child,
+    .dv-prose td:last-child {
+        border-right: 0;
+    }
+
+    .dv-editor-content .selectedCell::after {
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        content: '';
+        background: color-mix(in srgb, var(--dv-magenta) 18%, transparent);
+    }
+
+    .dv-editor-content .column-resize-handle {
+        pointer-events: none;
+        position: absolute;
+        bottom: -2px;
+        right: -2px;
+        top: 0;
+        width: 4px;
+        background-color: var(--dv-cyan);
+    }
+
+    .dv-editor-content p.is-editor-empty:first-child::before {
+        content: attr(data-placeholder);
+        float: left;
+        height: 0;
+        pointer-events: none;
+        color: color-mix(in srgb, var(--dv-sky) 45%, transparent);
+    }
+
+    .resize-cursor {
+        cursor: col-resize;
     }
 }
 

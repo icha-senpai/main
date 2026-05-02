@@ -1,5 +1,8 @@
 <script setup lang="ts">
+
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import type { JSONContent } from '@tiptap/core';
+import DataVerseEditor from '@/components/editor/DataVerseEditor.vue';
 import { dashboard } from '@/routes';
 
 type EditablePost = {
@@ -7,7 +10,8 @@ type EditablePost = {
     title: string;
     slug: string;
     excerpt: string | null;
-    body: string;
+    body_html: string;
+    body_json: JSONContent | null;
     status: string;
 };
 
@@ -34,11 +38,19 @@ defineOptions({
     },
 });
 
-const form = useForm({
+const form = useForm<{
+    title: string;
+    slug: string;
+    excerpt: string;
+    body_html: string;
+    body_json: JSONContent | null;
+    status: string;
+}>({
     title: props.post.title,
     slug: props.post.slug,
     excerpt: props.post.excerpt ?? '',
-    body: props.post.body,
+    body_html: props.post.body_html || '<p></p>',
+    body_json: props.post.body_json,
     status: props.post.status,
 });
 
@@ -115,14 +127,14 @@ const submit = () => {
                     Body
                 </label>
 
-                <textarea
-                    v-model="form.body"
-                    rows="14"
-                    class="w-full rounded-xl border border-input bg-background/70 px-4 py-3 text-foreground outline-none transition focus:border-dv-cyan"
-                ></textarea>
+                <DataVerseEditor
+                    v-model="form.body_html"
+                    v-model:json-value="form.body_json"
+                    placeholder="Write the signal body..."
+                />
 
-                <p v-if="form.errors.body" class="mt-2 text-sm text-destructive">
-                    {{ form.errors.body }}
+                <p v-if="form.errors.body_html" class="mt-2 text-sm text-destructive">
+                    {{ form.errors.body_html }}
                 </p>
             </div>
 

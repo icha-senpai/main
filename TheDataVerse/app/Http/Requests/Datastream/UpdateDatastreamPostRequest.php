@@ -18,7 +18,8 @@ class UpdateDatastreamPostRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', 'alpha_dash:ascii'],
             'excerpt' => ['nullable', 'string', 'max:500'],
-            'body' => ['required', 'string'],
+            'body_html' => ['required', 'string'],
+            'body_json' => ['nullable', 'array'],
             'status' => ['required', 'string', Rule::in(['draft', 'published'])],
         ];
     }
