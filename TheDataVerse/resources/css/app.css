@@ -143,7 +143,7 @@
     }
 
     .dv-prose > * + * {
-        margin-top: 1.15em;
+        margin-top: 0.45em;
     }
 
     .dv-prose h1,
@@ -277,11 +277,12 @@
     }
 
     .dv-editor-content > * + * {
-        margin-top: 1em;
+        margin-top: 0.45em;
     }
 
     .dv-editor-content p {
-        line-height: 1.8;
+        margin-top: 0;
+        line-height: 1.7;
     }
 
     .dv-editor-content h2,
