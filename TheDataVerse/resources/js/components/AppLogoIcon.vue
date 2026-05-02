@@ -15,15 +15,55 @@ defineProps<Props>();
 <template>
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 40 42"
+        viewBox="0 0 64 64"
         :class="className"
         v-bind="$attrs"
+        aria-hidden="true"
     >
+        <defs>
+            <linearGradient id="dv-logo-gradient" x1="8" y1="8" x2="56" y2="56">
+                <stop offset="0%" stop-color="var(--dv-sky)" />
+                <stop offset="35%" stop-color="var(--dv-cyan)" />
+                <stop offset="68%" stop-color="var(--dv-violet)" />
+                <stop offset="100%" stop-color="var(--dv-magenta)" />
+            </linearGradient>
+
+            <filter id="dv-logo-glow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="2.2" result="blur" />
+                <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+        </defs>
+
+        <circle
+            cx="32"
+            cy="32"
+            r="27"
+            fill="var(--dv-void)"
+            stroke="url(#dv-logo-gradient)"
+            stroke-width="3"
+            filter="url(#dv-logo-glow)"
+        />
+
         <path
-            fill="currentColor"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M17.2 5.633 8.6.855 0 5.633v26.51l16.2 9 16.2-9v-8.442l7.6-4.223V9.856l-8.6-4.777-8.6 4.777V18.3l-5.6 3.111V5.633ZM38 18.301l-5.6 3.11v-6.157l5.6-3.11V18.3Zm-1.06-7.856-5.54 3.078-5.54-3.079 5.54-3.078 5.54 3.079ZM24.8 18.3v-6.157l5.6 3.111v6.158L24.8 18.3Zm-1 1.732 5.54 3.078-13.14 7.302-5.54-3.078 13.14-7.3v-.002Zm-16.2 7.89 7.6 4.222V38.3L2 30.966V7.92l5.6 3.111v16.892ZM8.6 9.3 3.06 6.222 8.6 3.143l5.54 3.08L8.6 9.3Zm21.8 15.51-13.2 7.334V38.3l13.2-7.334v-6.156ZM9.6 11.034l5.6-3.11v14.6l-5.6 3.11v-14.6Z"
+            d="M18 18h13.5c8.5 0 14.5 5.6 14.5 14s-6 14-14.5 14H18V18Zm8 7v14h5.2c4.5 0 7.2-2.8 7.2-7s-2.7-7-7.2-7H26Z"
+            fill="url(#dv-logo-gradient)"
+        />
+
+        <path
+            d="M35 18h8l5.8 18.5L54.5 18H62L52.2 46h-7.1L35 18Z"
+            fill="url(#dv-logo-gradient)"
+            opacity="0.92"
+        />
+
+        <path
+            d="M17 50c8-4.4 21.7-4.5 30 0"
+            stroke="var(--dv-magenta)"
+            stroke-width="2"
+            stroke-linecap="round"
+            opacity="0.75"
         />
     </svg>
 </template>

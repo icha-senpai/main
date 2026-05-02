@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-vue-next';
+import {
+    Archive,
+    GitBranch,
+    Globe2,
+    Home,
+    LayoutGrid,
+    Newspaper,
+    Rocket,
+} from 'lucide-vue-next';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -23,18 +31,38 @@ const mainNavItems: NavItem[] = [
         href: dashboard(),
         icon: LayoutGrid,
     },
+    {
+        title: 'Datastream',
+        href: '/datastream',
+        icon: Newspaper,
+    },
+    {
+        title: 'Archives',
+        href: '/archives',
+        icon: Archive,
+    },
+    {
+        title: 'World',
+        href: '/world',
+        icon: Globe2,
+    },
+    {
+        title: 'Star Citizen',
+        href: '/star-citizen',
+        icon: Rocket,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: FolderGit2,
+        title: 'Public Gateway',
+        href: '/',
+        icon: Home,
     },
     {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
+        title: 'GitHub',
+        href: 'https://github.com/icha-senpai/main',
+        icon: GitBranch,
     },
 ];
 </script>
@@ -62,5 +90,6 @@ const footerNavItems: NavItem[] = [
             <NavUser />
         </SidebarFooter>
     </Sidebar>
+
     <slot />
 </template>
