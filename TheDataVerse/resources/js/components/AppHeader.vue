@@ -70,7 +70,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Datastream',
-        href: '/datastream',
+        href: '/dashboard/datastream',
         icon: Newspaper,
     },
     {
